@@ -1,8 +1,19 @@
 from django.shortcuts import render, HttpResponse, redirect
+from products.models import Product
 
 # Create your views here.
 
 
-def hello_view(request):
+def main_page_view(request):
     if request.method == 'GET':
-        return HttpResponse('Hello! Its my project')
+        return render(request, 'layouts/index.html')
+
+
+def products_view(request):
+    if request.method == 'GET':
+        products = Product.objects.all()
+
+        context = {
+            'products': products
+        }
+        return render(request, 'products/products.html', context=context)
