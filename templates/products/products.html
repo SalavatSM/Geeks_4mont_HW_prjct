@@ -1,4 +1,6 @@
 {% extends 'layouts/index.html' %}
+{% load static %}
+
 
 {% block content %}
 
@@ -14,11 +16,17 @@
 
     <div class="products">
         {% for product in products %}
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem; margin-bottom: 20px;">
                 <div class="card-body">
                     <img src="/media/{{ product.image }}" alt=""/>
-                    <h5 class="card-title">{{ product.title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Rate: {{ product.rate }}</h6>
+                    {% if product.rate < 4 %}
+                        <h5 class="card-title" style="color: #ff4040">{{ product.title }}</h5>
+                    {% else %}
+                        <h5 class="card-title">{{ product.title }}</h5>
+                    {% endif %}
+{#                    <h5 class="card-title">{{ product.title }}</h5>#}
+                    <h6 class="card-subtitle mb-2 text-muted">Rate: {
+                        { product.rate }}</h6>
                     <a href="/products/{{ product.id }}/" class="card-link">More</a>
                 </div>
             </div>
