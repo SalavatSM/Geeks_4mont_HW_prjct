@@ -36,6 +36,16 @@
             <h5>{{ product.modified_date }}</h5>
         </div>
 
+        <div class="review_create_block">
+            <form action="/review/create/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <input type="Submit" value="Create Review">
+            </form>
+        </div>
+
         <div class="reviews">
             {% for review in reviews %}
                 <div class="review_block">
